@@ -1,22 +1,16 @@
-# A Job listing website with NextJs
+📝 Job Listing Website with Next.js
+🌟 Overview
+Welcome to our Job Listing Application, built with the power of Next.js and TypeScript. This project fetches job data from a local JSON file and uses Next.js for seamless routing, ensuring a smooth user experience.
 
-## Overview
-
-It implements job listing application with Next.js that implement it with typescript. Currently it is fetching data from json file from local folder fetch. Besides it implements the routing with Nextjs that makes it simple.
-
-## Pages
-
-## Landing page
-
-The landing page contain a list of jobs, while it is shown how many results are there under the main heading. For now the sorting functionality is not working, however it is for future use. For now it looks like this:
+📄 Pages
+🏠 Landing Page
+The landing page displays a comprehensive list of job opportunities, along with the total number of available positions under the main heading. Although sorting functionality is currently in development, the interface is designed to be intuitive and user-friendly.
 ![alt text](screenshots/screenshot3.png)
 
-## details page
-
-It expand the information shown in the landing page as such in a thorough manner:
+📋 Details Page
+Dive deeper into job listings with our detailed view page, which expands on the information presented on the landing page, providing thorough insights into each job opportunity.
 ![alt text](screenshots/screenshot1.png)
 ![alt text](screenshots/screenshot2.png)
 
-## Conclusion
-
-This only contain the interface implemented by Nextjs, for the future new additional features will be added.
+🚀 Conclusion
+This project showcases the interface capabilities of Next.js. Stay tuned for future updates, as we plan to introduce exciting new features and enhancements!
