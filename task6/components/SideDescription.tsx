@@ -2,7 +2,7 @@ import React from 'react'
 import { CalendarDaysIcon, CalendarIcon, ClockIcon, MapPinIcon } from '@heroicons/react/24/outline';
 import { FireIcon } from '@heroicons/react/24/outline';
 import { Job } from '@/types/types';
-
+import { formatDate } from '@/app/utilities/DateFormatter';
 interface SideProps {
     job: Job;
 }
@@ -20,9 +20,6 @@ const categoryColors: { [key: string]: string } = {
 };
 
 const SideDescription:React.FC<SideProps> = ({job}) => {
-    const { about } = job
-
-
   return (
     <div className='p-1 w-[25%]'>
       <h1 className='text-2xl font-extrabold mb-5'>About</h1>
@@ -31,7 +28,7 @@ const SideDescription:React.FC<SideProps> = ({job}) => {
         <CalendarDaysIcon className='rounded-full mr-4 border-gray-100  w-12 h-12 text-sky-500 border-2 p-1'/>
         <div>
         <p>Posted on:</p>
-        <p className='font-bold'>{about.posted_on}</p>
+        <p className='font-bold'>{formatDate(job.datePosted)}</p>
         </div>
       </div>
 
@@ -39,7 +36,7 @@ const SideDescription:React.FC<SideProps> = ({job}) => {
           <FireIcon className='rounded-full mr-4 border-gray-100  w-12 h-12 text-sky-500 border-2 p-1'/>
             <div>
               <p>Deadline: </p>
-              <p className='font-bold'>{about.deadline}</p>
+              <p className='font-bold'>{formatDate(job.deadline)}</p>
             </div>
       </div>
 
@@ -47,7 +44,7 @@ const SideDescription:React.FC<SideProps> = ({job}) => {
         <MapPinIcon className='rounded-full mr-4 border-gray-100  w-12 h-12 text-sky-500 border-2 p-1'/>
         <div>
           <p>Location:</p>
-          <p className='font-bold'>{about.location}</p>
+          <p className='font-bold'>{job.location}</p>
         </div>
       </div>
 
@@ -55,7 +52,7 @@ const SideDescription:React.FC<SideProps> = ({job}) => {
         <CalendarIcon className='rounded-full mr-4 border-gray-100  w-12 h-12 text-sky-500 border-2 p-1'/>
         <div>
           <p>Start date:</p>
-          <p className='font-bold'>{about.start_date}</p>
+          <p className='font-bold'>{formatDate(job.startDate)}</p>
         </div>
       </div>
 
@@ -63,21 +60,25 @@ const SideDescription:React.FC<SideProps> = ({job}) => {
         <CalendarDaysIcon className='rounded-full mr-4 border-gray-100  w-12 h-12 text-sky-500 border-2 p-1'/>
         <div>
           <p>End date:</p>
-          <p className='font-bold'>{about.end_date}</p>
+          <p className='font-bold'>{formatDate(job.endDate)}</p>
         </div>
 
       </div>
       
       <hr className='mb-5'/>
 
-      <div className="categories">
+      <div className="category">
         <h1 className='text-2xl font-extrabold mb-5'>Categories</h1>
         <div className='flex flex-wrap gap-2 mb-6'>
-          {about.categories.map((category, index) => (
-            <span key={index} className={`text-sm p-2 font-bold rounded-full ${categoryColors[category]} || 'text-gray-600 bg-gray-200'`}>
-              { category }
+        {job.categories && job.categories.length > 0 ? (
+          job.categories.map((category, index) => (
+            <span key={index} className={`text-sm p-2 font-bold rounded-full ${categoryColors[category] || 'text-gray-600 bg-gray-200'}`}>
+              {category}
             </span>
-          ))}
+          ))
+        ) : (
+          <span className='text-gray-600 bg-gray-200 text-sm p-2 font-bold rounded-full'>No categories available</span>
+        )}
         </div>
       </div>
 
@@ -86,9 +87,11 @@ const SideDescription:React.FC<SideProps> = ({job}) => {
       <div className="requiredSkill">
         <h1 className='text-2xl font-extrabold mb-5'>Required Skills</h1>
         <div className='flex flex-wrap gap-2 mb-6'>
-          {about.required_skills.map((skill, index) => (
-            <span key={index} className='text-purple-800 bg-purple-100 rounded-full p-2'>{skill}</span>
-          ))}
+          {job.requiredSkills && job.requiredSkills.length > 0 ? (
+            job.requiredSkills.map((skill, index) => (
+              <span key={index} className='text-purple-800 bg-purple-100 rounded-full p-2'>{skill}</span>
+            ))) : (<span className='text-purple-800 bg-purple-100 rounded-full p-2'>No requeired skills</span>)  
+          }
         </div>
       </div>
 

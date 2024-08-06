@@ -12,7 +12,7 @@ type SectionColors = {
 };
 
 const Card: React.FC<CardProp> = ({ job }) => {
-  const { id, title, description, company, image, about } = job;
+  const { id, title, description, orgName, logoUrl, location } = job;
 
   const reducedDescription =
     description.length > 250 ? description.slice(0, 250) + "..." : description;
@@ -27,8 +27,8 @@ const Card: React.FC<CardProp> = ({ job }) => {
     <div className=" flex mx-6 mb-9 space-x-6 p-6 border rounded-2xl shadow-sm">
       <div className="logo mb-4">
         <Image
-         src={ image }
-         alt={`${company} logo`}
+         src={ logoUrl }
+         alt={`${orgName} logo`}
          width={150}
          height={150}
          className="rounded-full"
@@ -38,9 +38,9 @@ const Card: React.FC<CardProp> = ({ job }) => {
       <div>
         <h2 className="text-xl font-bold mb-2">{ title } </h2>
         <div className="flex space-x-6 mb-2">
-            <span className="text-gray-400 text-sm">{company}</span>
+            <span className="text-gray-400 text-sm">{orgName}</span>
             <span className="text-gray-400 text-sm text-center item-center">.</span>
-            <span className="text-gray-400 text-sm">{ about.location }</span>
+            <span className="text-gray-400 text-sm">{ location }</span>
         </div>
         <p className="text-gray-700 mb-2 ">{reducedDescription}</p>
         <div className="tags mt-2">
